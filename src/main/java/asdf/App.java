@@ -25,13 +25,15 @@ public class App {
         // Eventbus Beispiel
         EventBus eventbus = new EventBus();
         eventbus.register(new Listener());
+
         eventbus.post(1234);
 
 
+        System.out.println();
+        System.out.println();
+
         // Multimap Beispiel
-        String[] words = {"hallo", "wie", "gehts", "tolles", "tool", "habt", "ihr", "hier", "knorke"};
-        String satz;
-        ArrayListMultimap<String, Integer> nameToId = ArrayListMultimap.create();
+        HashMultimap<String, Integer> nameToId = HashMultimap.create();
         nameToId.put("Peter", 1);
         nameToId.put("Peter", 5);
         nameToId.put("Gustav", 1);
@@ -41,21 +43,31 @@ public class App {
         System.out.println(nameToId);
         System.out.println(inverse);
 
+
+        System.out.println();
+        System.out.println();
+
         // Joiner Beispiel
+        String[] words = {"hallo", "wie", "gehts", "tolles", "tool", "habt", "ihr", "hier", "knorke"};
         Joiner joiner = Joiner.on("--trenner--").skipNulls();
-        //String url = joiner.join("jdbc:","dbtype","://","host","/","dname", "?serverTimezone=Europe/Berlin");
         String url = joiner.join(words);
         System.out.println(url);
+        System.out.println();
+        System.out.println();
 
+        //String url = joiner.join("jdbc:","dbtype","://","host","/","dname", "?serverTimezone=Europe/Berlin");
 
         //Splitter Beispiel
+        String satz;
         satz = "Das ist ein Test um den Satz zu trennen , geht es?";
-        Iterable<String> split = Splitter.on("um").split(satz);
+        Iterable<String> split = Splitter.on(",").trimResults().split(satz);
 
         for (String i : split) {
             System.out.println(i);
         }
 
+        System.out.println();
+        System.out.println();
         //Hashing Beispiel
         String password = "passwort12345";
         HashCode hashPassword = sha256().hashString(password, Charsets.UTF_8);
